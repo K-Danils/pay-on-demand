@@ -1,0 +1,88 @@
+# --- General ---
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+
+# --- Node.js / React Frontend ---
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.development
+.env.production
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+.vscode/
+.idea/
+
+# Ant Design theme customization files (if dynamically generated)
+.ant-design-theme/
+
+# --- Java / Spring Boot Backend ---
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+logs/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.properties
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+*.iml
+
+# IntelliJ
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# --- PostgreSQL / Database ---
+*.pgdata/
+*.sql
+*.dump
+db/*.sqlite
+*.db
+
+# Local DB tools / config
+pgdata/
+*.backup
+
+# --- Others ---
+# Ignore OS-generated files
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Logs & temp
+*.log
+*.pid
+tmp/
+*.pid.lock
+# Docker
+*.pid
+docker-compose.override.yml
+.env
+.env.*
+!.env.example

@@ -1,1 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/* App-specific styles */
+/* Global styles are handled in src/styles/globals.css */
+
+.app-container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
