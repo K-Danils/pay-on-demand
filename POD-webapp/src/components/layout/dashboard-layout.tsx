@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Layout, Menu, Button, Dropdown, Avatar, Space, Typography } from 'antd';
 import {
   DashboardOutlined,
@@ -23,7 +23,7 @@ interface DashboardLayoutProps {
   userType: 'worker' | 'admin';
 }
 
-const DashboardLayout: React.FC<DashboardLayoutProps> = ({ userType }) => {
+const DashboardLayout = ({ userType }: DashboardLayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
@@ -153,7 +153,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ userType }) => {
         </div>
 
         <Menu
-          mode='inline'
+          mode="inline"
           selectedKeys={[location.pathname]}
           items={menuItems}
           onClick={handleMenuClick}
@@ -173,22 +173,18 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ userType }) => {
           }}
         >
           <Button
-            type='text'
+            type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
             style={{ fontSize: '16px' }}
           />
 
           <Space>
-            <Text type='secondary'>{isAdmin ? 'Administrator' : 'Worker'} Portal</Text>
-            <Dropdown menu={userDropdown} placement='bottomRight'>
-              <Button type='text' style={{ height: 'auto', padding: '4px 8px' }}>
+            <Text type="secondary">{isAdmin ? 'Administrator' : 'Worker'} Portal</Text>
+            <Dropdown menu={userDropdown} placement="bottomRight">
+              <Button type="text" style={{ height: 'auto', padding: '4px 8px' }}>
                 <Space>
-                  <Avatar
-                    icon={<UserOutlined />}
-                    style={{ backgroundColor: '#4A90E2' }}
-                    size='small'
-                  />
+                  <Avatar icon={<UserOutlined />} style={{ backgroundColor: '#4A90E2' }} size="small" />
                   <Text>John Doe</Text>
                 </Space>
               </Button>

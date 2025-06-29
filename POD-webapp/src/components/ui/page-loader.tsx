@@ -1,4 +1,3 @@
-import React from 'react';
 import { Spin, Typography } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -10,14 +9,8 @@ interface PageLoaderProps {
   fullHeight?: boolean;
 }
 
-const PageLoader: React.FC<PageLoaderProps> = ({
-  message = 'Loading...',
-  size = 'large',
-  fullHeight = false,
-}) => {
-  const antIcon = (
-    <LoadingOutlined style={{ fontSize: size === 'large' ? 32 : 24, color: '#4A90E2' }} spin />
-  );
+const PageLoader = ({ message = 'Loading...', size = 'large', fullHeight = false }: PageLoaderProps) => {
+  const antIcon = <LoadingOutlined style={{ fontSize: size === 'large' ? 32 : 24, color: '#4A90E2' }} spin />;
 
   return (
     <div
@@ -32,7 +25,7 @@ const PageLoader: React.FC<PageLoaderProps> = ({
       }}
     >
       <Spin indicator={antIcon} size={size} style={{ marginBottom: '16px' }} />
-      <Text type='secondary' style={{ fontSize: '14px' }}>
+      <Text type="secondary" style={{ fontSize: '14px' }}>
         {message}
       </Text>
     </div>

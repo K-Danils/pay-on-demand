@@ -1,6 +1,4 @@
-import React from 'react';
-
-const AdminDashboardPage: React.FC = () => {
+const AdminDashboardPage = () => {
   return (
     <div>
       <h1>Admin Dashboard</h1>

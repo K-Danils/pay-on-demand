@@ -1,93 +1,54 @@
 package com.danils.millers.payondemand.rest;
 
 import com.danils.millers.payondemand.entities.Company;
-import com.danils.millers.payondemand.service.CompanyService;
-import com.danils.millers.payondemand.service.Services;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.danils.millers.payondemand.service.CompanyRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
 public class CompanyRestController {
-    private Services<Company> service;
-    private ObjectMapper objectMapper;
+    private CompanyRepository companyRepository;
 
-    @Autowired
-    CompanyRestController(CompanyService service, ObjectMapper objectMapper){
-        this.service = service;
-        this.objectMapper = objectMapper;
+    public CompanyRestController(CompanyRepository companyRepository){
+        this.companyRepository = companyRepository;
     }
 
     @GetMapping("/companies")
     public List<Company> getCompanies(){
-        return service.findAll();
+        return companyRepository.findAll();
     }
 
     @GetMapping("/companies/{id}")
     public Company getCompany(@PathVariable String id){
-        Company company = service.findById(id);
-
-        if(company == null){
-            throw  new RuntimeException("Company not found by id " + id);
-        }
-
-        return company;
+        return companyRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found"));
     }
 
     @PostMapping("/companies")
     public Company addCompany(@RequestBody Company company) {
-        company.setId("");
-        return service.save(company);
+        company.setId(null);
+        return companyRepository.save(company);
     }
 
     @PutMapping("/companies")
     public Company updateCompany(@RequestBody Company company) {
-        return service.save(company);
-    }
+        Company foundCompany = companyRepository.findById(company.getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found"));
 
-    @PatchMapping("/companies/{id}")
-    public Company patchCompany(@PathVariable String id, @RequestBody Map<String, Object> patchPayload) {
-        Company company = service.findById(id);
-
-        // throw exception if null
-        if (company == null) {
-            throw new RuntimeException("Company not found by id- " + id);
-        }
-
-        // throw exception if request body contains "id" key
-        if (patchPayload.containsKey("id")) {
-            throw new RuntimeException("Company id not allowed in request body - " + id);
-        }
-
-        Company patchedCompany = apply(patchPayload, company);
-
-        return service.save(patchedCompany);
-    }
-
-    private Company apply(Map<String, Object> patchPayload, Company company) {
-        ObjectNode node = objectMapper.convertValue(company, ObjectNode.class);
-        ObjectNode patchNode = objectMapper.convertValue(patchPayload, ObjectNode.class);
-
-        node.setAll(patchNode);
-
-        return objectMapper.convertValue(node, Company.class);
+        return companyRepository.save(company);
     }
 
     @DeleteMapping("/companies/{id}")
-    public String deleteCompany(@PathVariable String id) {
-        Company company = service.findById(id);
-
-        if (company == null) {
-            throw new RuntimeException("Company id not found - " + id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCompany(@PathVariable String id) {
+        if (!companyRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found");
         }
 
-        service.deleteById(id);
-
-        return "Deleted company id - " + id;
+        companyRepository.deleteById(id);
     }
 }

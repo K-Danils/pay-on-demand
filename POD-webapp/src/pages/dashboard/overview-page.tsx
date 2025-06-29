@@ -1,15 +1,9 @@
-import React from 'react';
 import { Typography, Card, Row, Col, Statistic, Button, List, Badge, Space } from 'antd';
-import {
-  DollarOutlined,
-  CalendarOutlined,
-  CheckCircleOutlined,
-  ClockCircleOutlined,
-} from '@ant-design/icons';
+import { DollarOutlined, CalendarOutlined, CheckCircleOutlined, ClockCircleOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
-const OverviewPage: React.FC = () => {
+const OverviewPage = () => {
   // Mock data - in real app this would come from API
   const availableFunds = 1850.75;
   const nextPayrollDate = '2024-02-15';
@@ -50,20 +44,18 @@ const OverviewPage: React.FC = () => {
     <div>
       <div style={{ marginBottom: '24px' }}>
         <Title level={2}>Dashboard Overview</Title>
-        <Paragraph type='secondary'>
-          Welcome back! Here's a summary of your current financial status.
-        </Paragraph>
+        <Paragraph type="secondary">Welcome back! Here's a summary of your current financial status.</Paragraph>
       </div>
 
       <Row gutter={[24, 24]}>
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title='Available Funds'
+              title="Available Funds"
               value={availableFunds}
               precision={2}
               prefix={<DollarOutlined style={{ color: '#10B981' }} />}
-              suffix='USD'
+              suffix="USD"
               valueStyle={{ color: '#10B981', fontWeight: 600 }}
             />
           </Card>
@@ -72,11 +64,11 @@ const OverviewPage: React.FC = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title='Monthly Wage'
+              title="Monthly Wage"
               value={monthlyWage}
               precision={2}
               prefix={<DollarOutlined style={{ color: '#4A90E2' }} />}
-              suffix='USD'
+              suffix="USD"
               valueStyle={{ color: '#4A90E2', fontWeight: 600 }}
             />
           </Card>
@@ -85,11 +77,11 @@ const OverviewPage: React.FC = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title='Accumulated This Month'
+              title="Accumulated This Month"
               value={accumulatedThisMonth}
               precision={2}
               prefix={<DollarOutlined style={{ color: '#FF6B35' }} />}
-              suffix='USD'
+              suffix="USD"
               valueStyle={{ color: '#FF6B35', fontWeight: 600 }}
             />
           </Card>
@@ -98,7 +90,7 @@ const OverviewPage: React.FC = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title='Next Payroll'
+              title="Next Payroll"
               value={nextPayrollDate}
               prefix={<CalendarOutlined style={{ color: '#1E3A8A' }} />}
               valueStyle={{ color: '#1E3A8A', fontWeight: 600 }}
@@ -109,10 +101,10 @@ const OverviewPage: React.FC = () => {
 
       <Row gutter={[24, 24]} style={{ marginTop: '24px' }}>
         <Col xs={24} lg={16}>
-          <Card title='Recent Pay Requests' className='shadow-soft'>
+          <Card title="Recent Pay Requests" className="shadow-soft">
             <List
               dataSource={recentRequests}
-              renderItem={request => (
+              renderItem={(request) => (
                 <List.Item>
                   <List.Item.Meta
                     title={
@@ -131,21 +123,21 @@ const OverviewPage: React.FC = () => {
               )}
             />
             <div style={{ textAlign: 'center', marginTop: '16px' }}>
-              <Button type='link'>View All Requests</Button>
+              <Button type="link">View All Requests</Button>
             </div>
           </Card>
         </Col>
 
         <Col xs={24} lg={8}>
-          <Card title='Quick Actions' className='shadow-soft'>
-            <Space direction='vertical' style={{ width: '100%' }} size='middle'>
-              <Button type='primary' size='large' block icon={<DollarOutlined />}>
+          <Card title="Quick Actions" className="shadow-soft">
+            <Space direction="vertical" style={{ width: '100%' }} size="middle">
+              <Button type="primary" size="large" block icon={<DollarOutlined />}>
                 Request Pay Advance
               </Button>
-              <Button size='large' block icon={<CalendarOutlined />}>
+              <Button size="large" block icon={<CalendarOutlined />}>
                 View Pay History
               </Button>
-              <Button size='large' block icon={<CheckCircleOutlined />}>
+              <Button size="large" block icon={<CheckCircleOutlined />}>
                 Update Account Info
               </Button>
             </Space>

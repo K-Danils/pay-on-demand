@@ -1,4 +1,3 @@
-import React from 'react';
 import { Layout, Typography, Button, Space } from 'antd';
 import { HomeOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +6,7 @@ import { paths } from '../../routes';
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 
-const NotFoundPage: React.FC = () => {
+const NotFoundPage = () => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
@@ -42,11 +41,11 @@ const NotFoundPage: React.FC = () => {
             </Paragraph>
           </div>
 
-          <Space size='middle'>
-            <Button type='primary' size='large' icon={<HomeOutlined />} onClick={handleGoHome}>
+          <Space size="middle">
+            <Button type="primary" size="large" icon={<HomeOutlined />} onClick={handleGoHome}>
               Go Home
             </Button>
-            <Button size='large' icon={<ArrowLeftOutlined />} onClick={handleGoBack}>
+            <Button size="large" icon={<ArrowLeftOutlined />} onClick={handleGoBack}>
               Go Back
             </Button>
           </Space>

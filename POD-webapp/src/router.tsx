@@ -9,10 +9,10 @@ const SignInPage = React.lazy(() => import('./pages/auth/sign-in-page'));
 const OverviewPage = React.lazy(() => import('./pages/dashboard/overview-page'));
 const NotFoundPage = React.lazy(() => import('./pages/errors/not-found-page'));
 const DashboardLayout = React.lazy(() => import('./components/layout/dashboard-layout'));
+const CompaniesPage = React.lazy(() => import('./pages/admin/companies-page'));
 
 // Placeholder components (temporary - will be replaced with actual components)
 const AdminDashboardPage = () => <div>Admin Dashboard Page</div>;
-const CompaniesPage = () => <div>Companies Page</div>;
 const UsersPage = () => <div>Users Page</div>;
 const OccupationsPage = () => <div>Occupations Page</div>;
 const PayRequestsPage = () => <div>Pay Requests Page</div>;
@@ -39,7 +39,7 @@ const routeConfig: RouteObject[] = [
   // Dashboard routes (worker)
   {
     path: '/dashboard',
-    element: <DashboardLayout userType='worker' />,
+    element: <DashboardLayout userType="worker" />,
     children: [
       {
         index: true,
@@ -67,7 +67,7 @@ const routeConfig: RouteObject[] = [
   // Admin routes
   {
     path: '/admin',
-    element: <DashboardLayout userType='admin' />,
+    element: <DashboardLayout userType="admin" />,
     children: [
       {
         index: true,
@@ -75,7 +75,7 @@ const routeConfig: RouteObject[] = [
       },
       {
         path: 'dashboard',
-        element: <Navigate to='/admin' replace />,
+        element: <Navigate to="/admin" replace />,
       },
       {
         path: 'companies',

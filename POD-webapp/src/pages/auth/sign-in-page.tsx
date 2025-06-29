@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Layout, Card, Form, Input, Button, Typography, Space, Divider } from 'antd';
 import { MailOutlined, DollarOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -11,7 +11,7 @@ interface SignInFormData {
   email: string;
 }
 
-const SignInPage: React.FC = () => {
+const SignInPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const SignInPage: React.FC = () => {
       console.log('Sign in attempt:', values, 'Admin:', isAdminLogin);
 
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Navigate based on user type
       if (isAdminLogin) {
@@ -57,7 +57,7 @@ const SignInPage: React.FC = () => {
         <div style={{ width: '100%', maxWidth: '400px' }}>
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <Button
-              type='text'
+              type="text"
               icon={<ArrowLeftOutlined />}
               onClick={handleBackToHome}
               style={{
@@ -70,31 +70,27 @@ const SignInPage: React.FC = () => {
               Back to Home
             </Button>
 
-            <Space direction='vertical' size='small'>
+            <Space direction="vertical" size="small">
               <DollarOutlined style={{ fontSize: '48px', color: '#FF6B35' }} />
               <Title level={2} style={{ margin: 0 }}>
                 Pay On Demand
               </Title>
-              <Text type='secondary'>
-                {isAdminLogin ? 'Administrator Portal' : 'Worker Portal'}
-              </Text>
+              <Text type="secondary">{isAdminLogin ? 'Administrator Portal' : 'Worker Portal'}</Text>
             </Space>
           </div>
 
-          <Card className='shadow-medium'>
+          <Card className="shadow-medium">
             <div style={{ textAlign: 'center', marginBottom: '24px' }}>
               <Title level={3} style={{ marginBottom: '8px' }}>
                 Sign In {isAdminLogin ? 'as Admin' : ''}
               </Title>
-              <Paragraph type='secondary'>
-                Enter your email to receive a secure sign-in link
-              </Paragraph>
+              <Paragraph type="secondary">Enter your email to receive a secure sign-in link</Paragraph>
             </div>
 
-            <Form name='signIn' layout='vertical' onFinish={onFinish} autoComplete='off'>
+            <Form name="signIn" layout="vertical" onFinish={onFinish} autoComplete="off">
               <Form.Item
-                label='Email Address'
-                name='email'
+                label="Email Address"
+                name="email"
                 rules={[
                   {
                     required: true,
@@ -106,11 +102,11 @@ const SignInPage: React.FC = () => {
                   },
                 ]}
               >
-                <Input prefix={<MailOutlined />} placeholder='Enter your email' size='large' />
+                <Input prefix={<MailOutlined />} placeholder="Enter your email" size="large" />
               </Form.Item>
 
               <Form.Item style={{ marginBottom: '16px' }}>
-                <Button type='primary' htmlType='submit' size='large' block loading={loading}>
+                <Button type="primary" htmlType="submit" size="large" block loading={loading}>
                   {loading ? 'Sending Sign-In Link...' : 'Send Sign-In Link'}
                 </Button>
               </Form.Item>
@@ -119,26 +115,22 @@ const SignInPage: React.FC = () => {
             <Divider />
 
             <div style={{ textAlign: 'center' }}>
-              <Space direction='vertical' size='small'>
-                <Text type='secondary' style={{ fontSize: '12px' }}>
+              <Space direction="vertical" size="small">
+                <Text type="secondary" style={{ fontSize: '12px' }}>
                   Secure email-based authentication powered by Firebase
                 </Text>
                 {!isAdminLogin && (
                   <>
-                    <Divider type='vertical' />
-                    <Button
-                      type='link'
-                      size='small'
-                      onClick={() => navigate(paths.auth.signIn + '?type=admin')}
-                    >
+                    <Divider type="vertical" />
+                    <Button type="link" size="small" onClick={() => navigate(paths.auth.signIn + '?type=admin')}>
                       Sign in as Administrator
                     </Button>
                   </>
                 )}
                 {isAdminLogin && (
                   <>
-                    <Divider type='vertical' />
-                    <Button type='link' size='small' onClick={() => navigate(paths.auth.signIn)}>
+                    <Divider type="vertical" />
+                    <Button type="link" size="small" onClick={() => navigate(paths.auth.signIn)}>
                       Sign in as Worker
                     </Button>
                   </>
@@ -148,7 +140,7 @@ const SignInPage: React.FC = () => {
           </Card>
 
           <div style={{ textAlign: 'center', marginTop: '24px' }}>
-            <Text type='secondary' style={{ fontSize: '12px' }}>
+            <Text type="secondary" style={{ fontSize: '12px' }}>
               Need help? Contact your system administrator
             </Text>
           </div>

@@ -25,7 +25,7 @@ public class PaymentRequest {
     @Column(name="amount")
     private @Getter @Setter double amount;
 
-    @Column(name="confirmed")
-    private @Getter @Setter bool isConfirmed;
+    @Column(name="is_approved")
+    private @Getter @Setter boolean isConfirmed;
 
 }
