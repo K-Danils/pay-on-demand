@@ -2,11 +2,15 @@ package com.danils.millers.payondemand.rest;
 
 import com.danils.millers.payondemand.entities.Company;
 import com.danils.millers.payondemand.service.CompanyRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -18,12 +22,20 @@ public class CompanyRestController {
     }
 
     @GetMapping("/companies")
-    public List<Company> getCompanies(){
-        return companyRepository.findAll();
+    public Page<Company> getCompanies(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "name,asc") String[] sort){
+
+        Sort sortObj = Sort.by(Sort.Order.by(sort[0]).with(Sort.Direction.fromString(sort[1])));
+
+        Pageable pageable = PageRequest.of(page, size, sortObj);
+
+        return companyRepository.findAll(pageable);
     }
 
     @GetMapping("/companies/{id}")
-    public Company getCompany(@PathVariable String id){
+    public Company getCompany(@PathVariable UUID id){
         return companyRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found"));
     }
@@ -44,7 +56,7 @@ public class CompanyRestController {
 
     @DeleteMapping("/companies/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCompany(@PathVariable String id) {
+    public void deleteCompany(@PathVariable UUID id) {
         if (!companyRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found");
         }

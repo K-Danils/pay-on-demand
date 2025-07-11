@@ -49,7 +49,7 @@ public class PaymentRequestRestController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot update ID");
         }
 
-        foundPaymentRequest.setConfirmed((Boolean) payload.get("isConfirmed"));
+        //foundPaymentRequest.setConfirmed((Boolean) payload.get("isConfirmed"));
 
         Object amount = payload.get("amount");
         if (amount instanceof Number) {

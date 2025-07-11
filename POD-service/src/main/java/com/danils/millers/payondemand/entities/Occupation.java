@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.OffsetDateTime;
+
 @Entity
 @Table(name="occupation")
 @NoArgsConstructor
@@ -22,4 +24,13 @@ public class Occupation {
 
     @Column(name="name")
     private @Getter @Setter String name;
+
+    @Column(name="comments")
+    private @Getter @Setter String comments;
+
+    @Column(name = "createdAt")
+    private @Getter @Setter OffsetDateTime createdAt;
+
+    @Column(name = "updatedAt")
+    private @Getter @Setter OffsetDateTime updatedAt;
 }

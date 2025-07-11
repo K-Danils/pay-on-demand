@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.OffsetDateTime;
+import java.util.List;
+
 @Entity
 @Table(name="payment_request")
 @NoArgsConstructor
@@ -16,16 +19,25 @@ public class PaymentRequest {
     @Column(name="id")
     private @Getter @Setter String id;
 
-    @Column(name="user_id")
-    private @Getter @Setter String userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private @Getter @Setter User user;
 
-    @Column(name="company_id")
-    private @Getter @Setter String companyId;
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private @Getter @Setter Company company;
+
+    @ManyToOne
+    @JoinColumn(name = "occupation_id")
+    private @Getter @Setter Occupation occupation;
 
     @Column(name="amount")
     private @Getter @Setter double amount;
 
-    @Column(name="is_approved")
-    private @Getter @Setter boolean isConfirmed;
+    @Column(name="status")
+    private @Getter @Setter String status;
+
+    @Column(name = "createdAt")
+    private @Getter @Setter OffsetDateTime createdAt;
 
 }

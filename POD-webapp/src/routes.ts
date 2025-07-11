@@ -18,7 +18,7 @@ export const paths = {
     companies: '/admin/companies',
     users: '/admin/users',
     occupations: '/admin/occupations',
-    payRequests: '/admin/pay-requests',
+    payRequests: '/admin/payment-requests',
     settings: '/admin/settings',
   },
   errors: {

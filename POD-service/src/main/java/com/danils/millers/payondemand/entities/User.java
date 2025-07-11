@@ -41,6 +41,9 @@ public class User {
     @Column(name = "surname")
     private @Getter @Setter String surname;
 
+    @Column(name = "email")
+    private @Getter @Setter String email;
+
     @Column(name = "personal_number")
     private @Getter @Setter String personalNumber;
 }

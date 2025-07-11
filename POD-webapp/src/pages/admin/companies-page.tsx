@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react';
-import api from '../../services/api';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Spin } from 'antd';
 
-const CompaniesPage = () => {
-  const [data, setData] = useState(null);
+const CompaniesPage: React.FC = () => {
+  const navigate = useNavigate();
 
   useEffect(() => {
-    api.get('/companies').then((res) => setData(res.data));
-  }, []);
-
-  console.log('company data', data);
+    // Redirect to the new companies list page
+    navigate('/admin/companies', { replace: true });
+  }, [navigate]);
 
   return (
-    <div>
-      <h1>Manage Companies</h1>
-      {/* Company management interface will be implemented here */}
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+      <Spin size="large" />
     </div>
   );
 };

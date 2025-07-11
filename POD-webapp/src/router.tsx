@@ -10,12 +10,23 @@ const OverviewPage = React.lazy(() => import('./pages/dashboard/overview-page'))
 const NotFoundPage = React.lazy(() => import('./pages/errors/not-found-page'));
 const DashboardLayout = React.lazy(() => import('./components/layout/dashboard-layout'));
 const CompaniesPage = React.lazy(() => import('./pages/admin/companies-page'));
+const CompaniesListPage = React.lazy(() => import('./pages/admin/companies/list-page'));
+const CreateCompanyPage = React.lazy(() => import('./pages/admin/companies/create-page'));
+const EditCompanyPage = React.lazy(() => import('./pages/admin/companies/edit-page'));
+const CompanyDetailsPage = React.lazy(() => import('./pages/admin/companies/details-page'));
+const CreateUserPage = React.lazy(() => import('./pages/admin/companies/create-user-page'));
+const EditUserPage = React.lazy(() => import('./pages/admin/companies/edit-user-page'));
+const CreateOccupationPage = React.lazy(() => import('./pages/admin/companies/create-occupation-page'));
+const EditOccupationPage = React.lazy(() => import('./pages/admin/companies/edit-occupation-page'));
+const PaymentRequestsListPage = React.lazy(() => import('./pages/admin/payment-requests/list-page'));
+
+// Admin components
+const AdminDashboardPage = React.lazy(() => import('./pages/admin/admin-dashboard-page'));
 
 // Placeholder components (temporary - will be replaced with actual components)
-const AdminDashboardPage = () => <div>Admin Dashboard Page</div>;
 const UsersPage = () => <div>Users Page</div>;
 const OccupationsPage = () => <div>Occupations Page</div>;
-const PayRequestsPage = () => <div>Pay Requests Page</div>;
+const PayRequestsPage = () => <div>Pay Requests Page</div>; // For worker dashboard
 const AccountPage = () => <div>Account Page</div>;
 const HistoryPage = () => <div>History Page</div>;
 const SettingsPage = () => <div>Settings Page</div>;
@@ -79,7 +90,35 @@ const routeConfig: RouteObject[] = [
       },
       {
         path: 'companies',
-        element: <CompaniesPage />,
+        element: <CompaniesListPage />,
+      },
+      {
+        path: 'companies/create',
+        element: <CreateCompanyPage />,
+      },
+      {
+        path: 'companies/:id',
+        element: <CompanyDetailsPage />,
+      },
+      {
+        path: 'companies/:id/edit',
+        element: <EditCompanyPage />,
+      },
+      {
+        path: 'companies/:id/users/create',
+        element: <CreateUserPage />,
+      },
+      {
+        path: 'companies/:id/users/:userId/edit',
+        element: <EditUserPage />,
+      },
+      {
+        path: 'companies/:id/occupations/create',
+        element: <CreateOccupationPage />,
+      },
+      {
+        path: 'companies/:id/occupations/:occupationId/edit',
+        element: <EditOccupationPage />,
       },
       {
         path: 'users',
@@ -90,8 +129,8 @@ const routeConfig: RouteObject[] = [
         element: <OccupationsPage />,
       },
       {
-        path: 'pay-requests',
-        element: <PayRequestsPage />,
+        path: 'payment-requests',
+        element: <PaymentRequestsListPage />,
       },
       {
         path: 'settings',
