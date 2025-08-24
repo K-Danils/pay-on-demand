@@ -1,4 +1,4 @@
-package com.danils.millers.payondemand.entities;
+package com.danils.millers.payondemand.service.companies.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,26 +7,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @Entity
-@Table(name="occupation")
+@Table(name="company")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Occupation {
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name="id")
-    private @Getter
-    @Setter String id;
-
-    @Column(name="company_id")
-    private @Getter @Setter String companyId;
+    private @Getter @Setter UUID id;
 
     @Column(name="name")
     private @Getter @Setter String name;
 
-    @Column(name="comments")
-    private @Getter @Setter String comments;
+    @Column(name = "active")
+    private @Getter @Setter Boolean active;
 
     @Column(name = "createdAt")
     private @Getter @Setter OffsetDateTime createdAt;
@@ -34,3 +31,4 @@ public class Occupation {
     @Column(name = "updatedAt")
     private @Getter @Setter OffsetDateTime updatedAt;
 }
+

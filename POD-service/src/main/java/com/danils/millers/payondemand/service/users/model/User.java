@@ -1,5 +1,7 @@
-package com.danils.millers.payondemand.entities;
+package com.danils.millers.payondemand.service.users.model;
 
+import com.danils.millers.payondemand.entities.Company;
+import com.danils.millers.payondemand.entities.Occupation;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

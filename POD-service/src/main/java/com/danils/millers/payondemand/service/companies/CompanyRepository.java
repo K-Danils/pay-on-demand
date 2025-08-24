@@ -1,6 +1,6 @@
-package com.danils.millers.payondemand.service;
+package com.danils.millers.payondemand.service.companies;
 
-import com.danils.millers.payondemand.entities.Company;
+import com.danils.millers.payondemand.service.companies.model.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
